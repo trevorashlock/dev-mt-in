@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="devMtIn">
 
 <head>
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,700,600' rel='stylesheet' type='text/css'>
@@ -9,9 +9,9 @@
 	<title>DevMtin</title>
 </head>
 
-<body>
+<body ng-controller="homeCtrl">
 	<div class="l-header">
-		<h1>Your Name</h1>
+		<h1>{{ myProfile.name }}</h1>
 	</div>
   
   <div class="wrapper">  
@@ -22,7 +22,7 @@
 
     <div>      
 
-      <input id="name" type="text" placeholder="Your Name">
+      <input id="name" type="text" placeholder="Your Name" ng-model="myProfile.name">
       <br />
 
       <input id="likes" type="text" placeholder="Likes">
@@ -36,13 +36,14 @@
   </div>
 
   <div class="l-container">
-    <h2>Friends</h2>
+    <h2>{{myProfile.friends}}</h2>
 
     <button class="l-btn l-btn-main">Go</button>
-    <input type="text" placeholder="Find Friends">    
-    <div class="friendList">
+    <input type="text" placeholder="Find Friends" ng-model="findFriend.name">    
+    <div class="friendList" ng-repeat="friend in myProfile.friends | filter: findFriend.name | orderBy: name : true">
+     
       <span class="closeBtn"></span>
-        My Friends
+        {{friend.name}}
       <br />
       <div class="secondConnection friendList">
         My Second Connections
@@ -64,7 +65,10 @@
 			</div>
 		</div>
 	</div>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+
+  <script src="app.js"></script>
+  <script src="homeCtrl.js"></script>
 </body>
 
 </html>
