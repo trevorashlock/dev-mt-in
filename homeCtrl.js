@@ -1,6 +1,11 @@
 angular.module('devMtIn')
-.controller('homeCtrl', function($scope) {
-  
+.controller('homeCtrl', function($scope, profileService) {
+  $scope.editing = false;
+
+  $scope.saveProfile = function(profile) {
+    profileService.saveProfile(profile);
+    $scope.editing = false;
+  }
   $scope.myProfile = {
       "name": "Trevor Ashlock",
       "friends": [
@@ -20,6 +25,10 @@ angular.module('devMtIn')
   , value: true
   }
 ];
+
+profileService.serviceTest()
+profileService.saveProfile();
+
 
 
 
